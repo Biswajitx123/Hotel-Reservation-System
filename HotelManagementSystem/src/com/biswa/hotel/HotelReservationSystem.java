@@ -68,6 +68,9 @@ public class HotelReservationSystem {
 
     private static void reserveRoom(Connection connection, Scanner scanner) {
         try {
+        	System.out.print("Enter reservation id: ");
+            String reservationId = scanner.next();
+            scanner.nextLine();
             System.out.print("Enter guest name: ");
             String guestName = scanner.next();
             scanner.nextLine();
@@ -76,8 +79,8 @@ public class HotelReservationSystem {
             System.out.print("Enter contact number: ");
             String contactNumber = scanner.next();
 
-            String sql = "INSERT INTO reservations (guest_name, room_number, contact_number) " +
-                    "VALUES ('" + guestName + "', " + roomNumber + ", '" + contactNumber + "')";
+            String sql = "INSERT INTO reservations (reservation_id, guest_name, room_number, contact_number) " +
+                    "VALUES ('" + reservationId + "','" + guestName + "', " + roomNumber + ", '" + contactNumber + "')";
 
             try (Statement statement = connection.createStatement()) {
                 int affectedRows = statement.executeUpdate(sql);
